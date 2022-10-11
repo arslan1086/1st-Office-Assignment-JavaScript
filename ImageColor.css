@@ -1,0 +1,157 @@
+/* body{
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.product{
+    position: relative;
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.img-1{
+    width: 30em;
+    z-index: 0;
+}
+
+.img-2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+p{
+    max-width: 30em;
+    line-height: 27px;
+}
+
+.color {
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    mix-blend-mode: multiply;
+}
+
+.color-input{
+    background: #fff;
+    border: 1px #ccc solid;
+    border-radius: 4px;
+    padding: 0.3em;
+}
+
+button {
+    display: block;
+    padding: 10px;
+    margin-top: 10px;
+}
+*/
+
+
+
+body{
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin-top: 0px;
+}
+
+#heading{
+    color: #02574B;
+    margin-top: 40px;
+}
+
+input{
+    width: 100%;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+*{
+    margin: 0px ;
+    padding: 0px;
+}
+.drag-zone {
+    /* height: 400px;
+    width: 55% ; */
+
+    width: 30%;
+    height: 250px;
+    border: 10px solid #02574B;
+    float: left;
+    margin-top: 70px;
+    background-color: bisque;
+    text-align: center;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+
+.drop-zone{
+    /* width: 100%;
+    height: 400px; */
+
+    width: 45%;
+    height: 250px;
+    margin-left: 20px;
+    border: 10px solid #778838;
+    float: left;
+    margin-top: 70px;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.color-input{
+    /* background: #fff; */
+    border: 1px #ccc solid;
+    border-radius: 4px;
+    padding: 0.3em;
+}
+
+button {
+    display: block;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#textarea { 
+    font-size: 30px; 
+    text-align: center;
+    background-color: bisque;
+}
+
+
+.drop-zone #testing{
+    display: none;
+    position: static;
+}
+
+
+.result {
+    display: none;
+}
+
+canvas {
+    border: 2px solid blue;
+}
+
+/* #convert{
+    margin-top: 800px;
+} */

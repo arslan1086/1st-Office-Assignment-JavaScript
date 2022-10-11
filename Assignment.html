@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- html2canvas cdn link -->
+    <script src="  https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.0/html2canvas.min.js"></script>
+    <title>div 2 jpg using html2canvas js library</title>
+
+    <link rel="stylesheet" href="ImageColor.css">
+
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="drag-zone" ondragover=" allowDrop(event)" ondrop="dropcopy(event)">
+                    <h1 id="heading">Image Bank</h1>
+                    <img src="Images/shirt.png" ondragleave="move(event)" height="130px" id="drag-element1"
+                        ondragstart="DragStart(event) ">
+                    <img src="Images/shirt.png " ondragleave="move(event)" height="130px" id="drag-element2"
+                        ondragstart="DragStart(event) ">
+                    <img src="Images/shirt.png" ondragleave="move(event)" height="130px" id="drag-element3"
+                        ondragstart="DragStart(event) ">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="drop-zone" id="drop_all_img" onclick="bgChange(event)">
+                    <div class="mb-3">
+                        <input class="form-control form-control-sm" id="textarea" placeholder="Enter Text Here" />
+                    </div>
+                    <input type="color" id="testing" class="color-input" value="#ffe4c4" />
+                </div>
+                <button id="covert" onclick="convert()">Convert me to jpg image</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="result">
+        <a href=""><button id="covert">Download JPG</button></a>
+    </div>
+
+
+    <button type="button" onclick="zoomin()">Zoom In</button>
+    <button type="button" onclick="zoomout()">Zoom Out</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        function zoomin(){
+            var myImg = document.getElementById("drag-element1");
+            var currWidth = myImg.clientWidth;
+            if(currWidth == 500){
+                alert("Maximum zoom-in level reached.");
+            } else{
+                myImg.style.width = (currWidth + 50) + "px";
+            } 
+        }
+        function zoomout(){
+            var myImg = document.getElementById("drag-element1");
+            var currWidth = myImg.clientWidth;
+            if(currWidth == 50){
+                alert("Maximum zoom-out level reached.");
+            } else{
+                myImg.style.width = (currWidth - 50) + "px";
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+
+        function openColorBar() {
+            document.getElementById("testing").click()
+        }
+
+        function bgChange(event) {
+            openColorBar();
+            // console.log(event.target.id)
+            var bg_color = document.getElementsByClassName('color-input')[0].value;
+            // console.log(bg_color)
+            const img_bg_color = document.getElementById(event.target.id);
+            // console.log(img_bg_color)
+            img_bg_color.style.backgroundColor = bg_color;
+
+
+
+
+            var bgColors = document.querySelector(".drop-zone");
+            bgColors.style.backgroundColor = "white";
+        }
+
+
+
+
+
+
+
+
+        // To Drag and Drop the Images:
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function DragStart(ev) {
+            var element = document.getElementById('drop_all_img');
+            var lastChild = element.lastElementChild;
+            const div = document.getElementById(ev.target.id)
+            // console.log('element before drag id' + ev.target.id)
+            const clone = div.cloneNode(true);
+            clone.removeAttribute("ondragleave");
+            clone.removeAttribute("ondragstart");
+            clone.setAttribute('dragable', true)
+
+
+            // console.log('clone = ' + clone)
+            if (lastChild.id == 'testing') {
+                clone.id = '1';
+
+                //document.getElementById('cloned_id').id = clone.id;
+            }
+            else {
+                // console.log('here');
+                clone.id = parseInt(lastChild.id) + 1;
+                // console.log(parseInt(lastChild.id) + 1);
+                var cloned_ele = document.getElementById(2);
+                // console.log(cloned_ele);
+                // alert(clone.id);
+
+            }
+            document.getElementById('drop_all_img').appendChild(clone);
+            //dragElement(clone);
+        }
+
+
+
+
+
+
+
+        // Download Files:
+        function convert() {
+            const div = document.querySelector(".drop-zone");
+            const result = document.querySelector(".result");
+
+            html2canvas(div).then(function (canvas) {
+                result.appendChild(canvas);
+                let cvs = document.querySelector("canvas");
+                let dataURI = cvs.toDataURL("image/jpeg");
+                let downloadLink = document.querySelector(".result>a");
+                downloadLink.href = dataURI;
+                downloadLink.download = "div2canvasimage.jpg";
+                console.log(dataURI);
+            });
+            result.style.display = "block";
+        }
+    </script>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+-->
+</body>
+
+</html>
